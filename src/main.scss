@@ -1,3 +1,17 @@
+:root {
+  --dark100: #141414;
+  --dark80: #222;
+  --light100: #F2E3D5;
+  --white: #FFF;
+  --green100: #023535;
+  --green80: #015958;
+  --green60: #008F8C;
+  --green40: #0CABA8;
+  --green20: #0FC2C0;
+  --pink100: #F2668B;
+  --yellow100: #F2CB05;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +21,5 @@
 html, body, #root {
   font-size: 52.6%;
   font-family: 'Poppins', sans-serif;
+  background-color: var(--dark100);
 }
