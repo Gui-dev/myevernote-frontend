@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import presentationImg from './../../assets/images/presentation.png'
 import styles from './style.module.scss'
@@ -14,7 +15,9 @@ export const Home = () => {
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
           Voluptate asperiores, laborum itaque laboriosam adipisci perspiciatis recusandae.
         </p>
-        <a href="#">Register for free now</a>
+        <Link to="/register">
+          Register for free now
+        </Link>
       </header>
 
       <div className={styles.content}>

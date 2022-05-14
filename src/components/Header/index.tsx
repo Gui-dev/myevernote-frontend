@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 import logoImg from './../../assets/images/logo-white.png'
 import styles from './style.module.scss'
@@ -14,7 +15,9 @@ export const Header = () => {
   return (
     <section className={styles.container}>
       <header className={styles.header}>
-        <img src={logoImg} alt="" />
+        <Link to="/">
+          <img src={logoImg} alt="" />
+        </Link>
 
         <div className={styles.buttonMenu} onClick={handleToggleMenu}>
           { isOpenMenu
@@ -25,13 +28,14 @@ export const Header = () => {
 
         <ul className={`${styles.navbar} ${isOpenMenu ? styles.active : ''} `}>
           <li>
-            <a href="#">Item 1</a>
+            <Link to="/register">
+              <a>Register</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Item 1</a>
-          </li>
-          <li>
-            <a href="#">Item 1</a>
+            <Link to="/login">
+              <a>Login</a>
+            </Link>
           </li>
         </ul>
       </header>
