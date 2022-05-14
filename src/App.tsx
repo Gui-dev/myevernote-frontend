@@ -1,12 +1,18 @@
-import { Header } from "./components/Header"
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
-function App() {
+import { Header } from './components/Header'
+import { RoutesNavigation } from './routes'
 
+function App () {
+  const user = true
   return (
-    <>
-      <Header />
-      <h1>Hello World</h1>
-    </>
+    <BrowserRouter>
+      {user && (
+        <Header />
+      )}
+      <RoutesNavigation />
+    </BrowserRouter>
   )
 }
 
