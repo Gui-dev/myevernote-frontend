@@ -29,12 +29,12 @@ export const Header = () => {
         <ul className={`${styles.navbar} ${isOpenMenu ? styles.active : ''} `}>
           <li>
             <Link to="/register">
-              <a>Register</a>
+              Register
             </Link>
           </li>
           <li>
             <Link to="/login">
-              <a>Login</a>
+              Login
             </Link>
           </li>
         </ul>
