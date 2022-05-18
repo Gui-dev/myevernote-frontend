@@ -91,3 +91,16 @@
     }
   }
 }
+
+.messageError {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--pink100);
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 746px) {
+    font-size: 1.4rem;
+  }
+}
