@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .inputGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+
+    @media (min-width: 746px) {
+      &:hover svg{
+        fill: var(--green40);
+      }
+    }
+
+    svg {
+      margin-right: 1rem;
+    }
+
+    input {
+      font-size: 1.6rem;
+      color: var(--light100);
+      padding: 1rem;
+      height: 4rem;
+      width: 90%;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid var(--dark80);
+
+      @media (min-width: 746px) {
+        font-size: 1.8rem;
+      }
+
+      &::placeholder {
+        color: var(--light100);
+      }
+    }
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 100%;
+
+  button {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--light100);
+    height: 4rem;
+    width: 100%;
+    background-color: var(--green40);
+    border: 0;
+    border-radius: .5rem;
+    cursor: pointer;
+
+    @media (min-width: 746px) {
+      width: 50%;
+      transition: background-color .2s;
+
+      &:hover {
+        background-color: var(--green20);
+      }
+    }
+  }
+
+
+  a {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--light100);
+    text-decoration: none;
+    margin-top: 3rem;
+
+    @media (min-width: 746px) {
+      font-size: 1.8rem;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--green40);
+      }
+    }
+  }
+}
+
+.messageError {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--pink100);
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 746px) {
+    font-size: 1.4rem;
+  }
+}
