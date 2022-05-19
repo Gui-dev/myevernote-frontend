@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { FaLock, FaMailBulk } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
+import { useAuth } from '../../hooks/useAuth'
 import styles from './style.module.scss'
 
 export const LoginForm = () => {
+  const { loading, error, signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    await signIn(email, password)
+  }
+
   return (
-    <form className={styles.container} >
+    <form className={styles.container} onSubmit={ handleSubmit }>
+      { error && (
+        <div className={styles.messageError}>
+          { error }
+        </div>
+      ) }
+
       <div className={styles.inputGroup}>
         <FaMailBulk size={18} color="#FFF"/>
         <input
@@ -34,7 +47,9 @@ export const LoginForm = () => {
 
       <div className={styles.buttonGroup}>
         <button>
-          Login
+          {
+            loading ? 'Carregando...' : 'Login'
+          }
         </button>
         <Link to="/register">
           Ainda não tem uma conta? Cadastrar
