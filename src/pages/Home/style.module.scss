@@ -41,9 +41,9 @@
 
   @media (min-width: 746px) {
     h1 {
-      font-size: 5rem;
+      font-size: 2rem;
       font-weight: bold;
-      line-height: 5rem;
+      line-height: 3rem;
       color: var(--light100);
       margin-bottom: 2rem;
     }
@@ -99,6 +99,12 @@
   }
 
   @media (min-width: 746px) {
+    img {
+      height: 40rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     img {
       height: auto;
     }
