@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
+import { PrivateRoutes } from './PrivateRoutes'
+import { PublicRoutes } from './PublicRoutes'
 import { Home } from '../pages/Home'
 import { Auth } from '../pages/Auth'
 import { Register } from '../pages/Register'
@@ -10,11 +12,32 @@ import { User } from '../pages/User'
 export const RoutesNavigation = () => {
   return (
     <Routes>
-      <Route path="/" element={ <Home /> }/>
-      <Route path="/login" element={ <Auth /> }/>
-      <Route path="/register" element={ <Register /> }/>
-      <Route path="/notes" element={ <Notes /> }/>
-      <Route path="/users/edit" element={ <User /> }/>
+      <Route path="/" element={<PublicRoutes />}>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/login"
+          element={<Auth />}
+        />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+      </Route>
+
+      <Route path="/" element={ <PrivateRoutes /> }>
+        <Route
+          path="/notes"
+          element={<Notes />}
+        />
+        <Route
+          path="/users/edit"
+          element={<User />}
+        />
+      </Route>
+
     </Routes>
   )
 }
