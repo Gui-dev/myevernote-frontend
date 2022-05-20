@@ -15,6 +15,7 @@ type AuthContextProps = {
   loading: boolean
   error: string
   signIn: (email: string, password: string) => Promise<void>
+  signOut: () => void
 }
 
 type AuthProviderProps = {
@@ -70,12 +71,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }
 
+  const signOut = () => {
+    localStorage.removeItem('myevernote:user')
+    localStorage.removeItem('myevernote:token')
+    setUser(null)
+  }
+
   return (
     <AuthContext.Provider value={{
       user,
       loading,
       error,
-      signIn
+      signIn,
+      signOut
     }}>
       { children }
     </AuthContext.Provider>
