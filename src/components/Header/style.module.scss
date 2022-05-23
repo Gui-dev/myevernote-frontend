@@ -47,12 +47,14 @@
     height: 100%;
     width: 30rem;
     background-color: var(--dark80);
+    z-index: 4;
 
     li {
       margin-top: 1.5rem;
       margin-left: 1.5rem;
       margin-bottom: 1rem;
       padding: 1rem;
+      height: 4rem;
       width: 25rem;
       background-color: var(--green80);
       border-radius: 5px;
@@ -64,6 +66,28 @@
         color: var(--light100);
         text-decoration: none;
         width: 25rem;
+      }
+    }
+
+    .buttonLogout {
+      background-color: var(--pink100);
+      padding: 0;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-align: left;
+        color: var(--light100);
+        padding: 1rem;
+        height: 4rem;
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
   }
@@ -92,6 +116,11 @@
           text-decoration: none;
           background-color: transparent;
           width: auto;
+          transition: color .2s;
+
+          &:hover {
+            color: var(--yellow100);
+          }
         }
       }
     }
@@ -102,52 +131,3 @@
   display: flex;
 }
 
-// .navbar {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   display: none;
-//   flex-direction: column;
-//   list-style: none;
-//   height: 100%;
-//   width: 30rem;
-//   background-color: var(--green20);
-
-//   li {
-//     margin-top: 1.5rem;
-//     margin-left: 1.5rem;
-//     margin-bottom: 1rem;
-//     padding: 1rem;
-//     width: 25rem;
-//     background-color: var(--green80);
-//     border-radius: 5px;
-
-//     a {
-//       display: block;
-//       font-size: 1.6rem;
-//       font-weight: bold;
-//       color: var(--light100);
-//       text-decoration: none;
-//       width: 25rem;
-//     }
-//   }
-// }
-
-// ul {
-//   display: flex;
-//   flex-direction: row;
-//   list-style: none;
-
-//   li {
-//     margin-left: 1.5rem;
-//     padding: 1rem;
-
-//     a {
-//       display: block;
-//       font-size: 1.6rem;
-//       font-weight: bold;
-//       color: var(--light100);
-//       text-decoration: none;
-//     }
-//   }
-// }
