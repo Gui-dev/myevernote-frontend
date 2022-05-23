@@ -34,8 +34,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const user = localStorage.getItem('myevernote:user')
       const token = localStorage.getItem('myevernote:token')
 
-      api.defaults.headers.common.Authorization = `Bearer ${token}`
-      setUser(JSON.parse(String(user)))
+      if (user && token) {
+        api.defaults.headers.common.Authorization = `Bearer ${token}`
+        setUser(JSON.parse(user))
+      }
     }
     loadUser()
   }, [])
@@ -53,7 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       })
 
       localStorage.setItem('myevernote:user', JSON.stringify(data.user))
-      localStorage.setItem('myevernote:token', JSON.stringify(data.token))
+      localStorage.setItem('myevernote:token', data.token)
 
       api.defaults.headers.common.Authorization = `Bearer ${data.token}`
       setUser(data.user)
