@@ -1,0 +1,66 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 7rem);
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 13%;
+  margin-top: 1.5rem;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.plus {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  margin-top: 1rem;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.listNotes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  height: calc(100vh - 7rem);
+  background-color: var(--dark90);
+
+  p {
+    font-size: 1.6rem;
+    color: #FFF;
+    margin-top: 1rem;
+  }
+}
+
+.listNotes.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.content {
+  width: 100%;
+
+  h1 {
+    font-size: 2rem;
+    color: #FFF;
+  }
+}
+
+.content.active {
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 70%;
+}
