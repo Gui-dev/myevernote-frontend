@@ -40,12 +40,12 @@ type NoteProps = {
 }
 
 export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
-  const handleSetsetCurrentNote = (note: NoteProps) => {
+  const handleSetCurrentNote = (note: NoteProps) => {
     setCurrentNote({
       id: note.id,
       title: note.title,
       body: note.body,
-      created_at: note.created_at
+      created_at: note.dateFormatted
     })
   }
 
@@ -54,7 +54,7 @@ export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
       <div className={styles.listItem}>
         <article
           className={styles.note}
-          onClick={ () => handleSetsetCurrentNote(note) }
+          onClick={ () => handleSetCurrentNote(note) }
         >
           <h1 className={styles.noteTitle}>{note.titleFormatted}</h1>
           <div
