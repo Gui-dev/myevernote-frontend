@@ -6,6 +6,7 @@ import { AiOutlineMenuFold, AiOutlineMenuUnfold, AiFillPlusCircle } from 'react-
 import { api } from '../../services/api'
 import styles from './style.module.scss'
 import { ListNotes } from '../ListNotes'
+import { ContentNote } from '../ContentNote'
 
 type NoteProps = {
   id: string
@@ -56,7 +57,7 @@ export const NotesComponent = () => {
     setIsOpenToogleMenu(prev => !prev)
   }
 
-  const handleisOpenCreateNote = () => {
+  const handleIsOpenCreateNote = () => {
     console.log('Here')
   }
 
@@ -75,7 +76,7 @@ export const NotesComponent = () => {
         </button>
         <button
           className={styles.plus}
-          onClick={handleisOpenCreateNote}
+          onClick={handleIsOpenCreateNote}
         >
           <AiFillPlusCircle size={42} color="#0FC2C0"/>
         </button>
@@ -96,7 +97,7 @@ export const NotesComponent = () => {
       <div className={`${styles.content} ${isOpenToogleMenu ? styles.active : ''}`}>
         {
           currentNote
-            ? <h1>NOTES</h1>
+            ? <ContentNote currentNote={currentNote}/>
             : <h1>HERE</h1>
         }
       </div>
