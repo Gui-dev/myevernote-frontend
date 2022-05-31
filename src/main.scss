@@ -24,3 +24,13 @@ html, body, #root {
   font-family: 'Poppins', sans-serif;
   background-color: var(--dark100);
 }
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, .75) !important;
+  z-index: 6;
+}
+
+.ReactModal__Content {
+  background-color: var(--dark100) !important;
+  border: 1px solid var(--dark100) !important;
+}
