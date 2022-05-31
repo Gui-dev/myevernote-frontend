@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  height: 100%;
+  width: 100%;
+  background-color: var(--dark100);
+
+  input {
+    font-size: 1.6rem;
+    color: var(--light100);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    height: 5rem;
+    width: 100%;
+    background-color: var(--dark80);
+    border: 0;
+    border-radius: .5rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+      color: var(--light100);
+    }
+  }
+
+  textarea {
+    font-size: 1.6rem;
+    color: var(--light100);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    height: 20rem;
+    width: 100%;
+    background-color: var(--dark80);
+    border: 0;
+    border-radius: .5rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+      color: var(--light100);
+    }
+  }
+
+  .groupButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--light100);
+      height: 5rem;
+      background-color: transparent;
+      border: 0;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
+
+    .buttonCancel {
+      margin-right: 1rem;
+      width: 10rem;
+      background-color: var(--pink100);
+    }
+
+    .buttonConfirm {
+      width: 30rem;
+      background-color: var(--green80);
+
+      &:hover {
+        background-color: var(--green60);
+      }
+    }
+  }
+}
