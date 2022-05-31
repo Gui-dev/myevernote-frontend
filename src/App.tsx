@@ -1,18 +1,18 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import { AuthProvider } from './contexts/auth'
+import { Contexts } from './contexts'
 import { Header } from './components/Header'
 import { RoutesNavigation } from './routes'
 
 function App () {
   return (
-    <AuthProvider>
+    <Contexts>
       <BrowserRouter>
         <Header />
         <RoutesNavigation />
       </BrowserRouter>
-    </AuthProvider>
+    </Contexts>
   )
 }
 
