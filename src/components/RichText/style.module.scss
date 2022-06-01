@@ -1,0 +1,17 @@
+.richText {
+  display: block;
+  color: #FFF;
+  margin-bottom: 22rem;
+  border: 1px solid var(--dark100);
+  height: 25rem;
+  width: 100%;
+
+  @media (min-width: 746px) {
+    height: 50rem;
+    margin-bottom: 17rem;
+  }
+
+  h1, h2, h3, p, a, img {
+    margin-bottom: 1rem;
+  }
+}
