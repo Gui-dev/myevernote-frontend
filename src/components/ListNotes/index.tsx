@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 import { CurrentNoteProps } from '../Notes'
 import styles from './style.module.scss'
@@ -64,11 +65,12 @@ export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
           <time>{note.dateFormatted}</time>
 
           <div className={styles.actionButtons}>
-            <button
+            <Link
+              to={`/notes/edit/${note.id}`}
               className={styles.actionEdit}
             >
               <AiOutlineEdit size={18} color="#008F8C"/>
-            </button>
+            </Link>
             <button
               className={styles.actionDelete}
             >
