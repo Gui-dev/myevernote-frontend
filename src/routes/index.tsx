@@ -7,6 +7,7 @@ import { Home } from '../pages/Home'
 import { Auth } from '../pages/Auth'
 import { Register } from '../pages/Register'
 import { Notes } from '../pages/Notes'
+import { EditNote } from '../pages/EditNote'
 import { User } from '../pages/User'
 
 export const RoutesNavigation = () => {
@@ -31,6 +32,10 @@ export const RoutesNavigation = () => {
         <Route
           path="/notes"
           element={<Notes />}
+        />
+        <Route
+          path="/notes/edit/:id"
+          element={<EditNote />}
         />
         <Route
           path="/users/edit"
