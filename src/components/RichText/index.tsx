@@ -7,31 +7,29 @@ import styles from './style.module.scss'
 
 type RichTextProps = {
   note: string
+  setBody: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const RichText = ({ note }: RichTextProps) => {
+export const RichText = ({ note, setBody }: RichTextProps) => {
   const [value, setValue] = useState('')
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
       [{ size: ['small', false, 'large', 'huge'] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'size'],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code', 'size'],
       [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
       ['link', 'image'],
       ['clean']
     ]
   }
 
-  const formats = [
-    'header', 'font', 'size',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'color'
-  ]
-
   useEffect(() => {
     setValue(note)
   }, [note])
+
+  useEffect(() => {
+    setBody(value)
+  }, [value, setBody])
 
   return (
     <ReactQuill
@@ -39,7 +37,7 @@ export const RichText = ({ note }: RichTextProps) => {
       value={value}
       onChange={setValue}
       modules={modules}
-      formats={formats}
+      style={{ border: 0 }}
       className={styles.richText}
     />
   )
