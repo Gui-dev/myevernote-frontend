@@ -1,0 +1,103 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--light100);
+  }
+
+  > a {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transition: fill 0.2s;
+
+    &:hover path {
+      fill: var(--green80);
+    }
+  }
+}
+
+.formUpdate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  padding: 0 5%;
+  width: 100%;
+  background-color: var(--dark100);
+
+  input {
+    font-size: 1.6rem;
+    color: var(--light100);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    height: 5rem;
+    width: 100%;
+    background-color: var(--dark80);
+    border: 0;
+    border-radius: .5rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+      color: var(--light100);
+    }
+  }
+
+  textarea {
+    font-size: 1.6rem;
+    color: var(--light100);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    background-color: var(--dark80);
+    border: 0;
+    border-radius: .5rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+      color: var(--light100);
+    }
+  }
+
+  .groupButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--light100);
+      height: 5rem;
+      background-color: transparent;
+      border: 0;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
+
+    .buttonConfirm {
+      width: 30rem;
+      background-color: var(--green80);
+      transition: background-color .2s;
+
+      &:hover {
+        background-color: var(--green60);
+      }
+    }
+  }
+}
