@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 5rem;
   padding: 0 5%;
-  height: 100%;
   width: 100%;
   background-color: var(--dark100);
 
@@ -30,7 +30,7 @@
     color: var(--light100);
     padding: 1rem;
     margin-bottom: 1.5rem;
-    height: 20rem;
+    height: 50rem;
     width: 100%;
     background-color: var(--dark80);
     border: 0;
@@ -47,6 +47,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 
     button {
       display: flex;
@@ -72,6 +74,7 @@
     .buttonConfirm {
       width: 30rem;
       background-color: var(--green80);
+      transition: background-color .2s;
 
       &:hover {
         background-color: var(--green60);

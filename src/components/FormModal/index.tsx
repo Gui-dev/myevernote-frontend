@@ -1,6 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import ReactModal from 'react-modal'
 
+import { RichText } from './../RichText'
 import styles from './style.module.scss'
 
 type FormModalProps = {
@@ -9,8 +10,16 @@ type FormModalProps = {
 }
 
 export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+
   const handleCloseModal = () => {
     setIsOpenModal(false)
+  }
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    console.log(title, body)
   }
 
   return (
@@ -21,11 +30,20 @@ export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
     >
       <form
         className={styles.container}
-
+        onSubmit={ handleSubmit }
       >
-        <input type="text" name="title" placeholder="Titulo" />
+        <input
+          type="text"
+          name="title"
+          placeholder="Titulo"
+          value={title}
+          onChange={ event => setTitle(event.target.value) }
+        />
 
-        <textarea name="body" placeholder="Conteúdo" />
+        <RichText
+          note={body}
+          setBody={setBody}
+        />
 
         <div className={styles.groupButtons}>
           <button
