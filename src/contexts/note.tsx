@@ -23,7 +23,9 @@ export type NoteProps = {
 
 type NoteContextProps = {
   notes: NoteProps[]
+  loading: boolean
   loadNotes: () => Promise<void>
+  findNoteById: (id: string) => Promise<NoteProps | undefined>
 }
 
 type NoteProviderProps = {
@@ -34,29 +36,51 @@ export const NoteContext = createContext({} as NoteContextProps)
 
 export const NoteProvider = ({ children }: NoteProviderProps) => {
   const [notes, setNotes] = useState<NoteProps[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadNotes()
   }, [])
 
   const loadNotes = async () => {
-    const { data } = await api.get('/notes')
-    const dataFormatted = data.map((note: NoteProps) => {
-      return {
-        ...note,
-        titleFormatted: note.title.substring(0, 15),
-        bodyFormatted: note.body.substring(0, 40),
-        dateFormatted: format(new Date(note.created_at), 'dd/MM/yyyy', { locale: ptBr })
-      }
-    })
+    try {
+      setLoading(true)
+      const { data } = await api.get('/notes')
+      const dataFormatted = data.map((note: NoteProps) => {
+        return {
+          ...note,
+          titleFormatted: note.title.substring(0, 15),
+          bodyFormatted: note.body.substring(0, 40),
+          dateFormatted: format(new Date(note.created_at), 'dd/MM/yyyy', { locale: ptBr })
+        }
+      })
 
-    setNotes(dataFormatted.reverse())
+      setNotes(dataFormatted.reverse())
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const findNoteById = async (id: string) => {
+    try {
+      setLoading(true)
+      const { data } = await api.get(`/notes/${id}`)
+      return data as NoteProps
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <NoteContext.Provider value={{
       notes,
-      loadNotes
+      loading,
+      loadNotes,
+      findNoteById
     }}>
       { children }
     </NoteContext.Provider>
