@@ -2,6 +2,7 @@ import React from 'react'
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
+import { useNote } from '../../hooks/useNote'
 import { CurrentNoteProps } from '../Notes'
 import styles from './style.module.scss'
 
@@ -41,6 +42,8 @@ type NoteProps = {
 }
 
 export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
+  const { deleteNote } = useNote()
+
   const handleSetCurrentNote = (note: NoteProps) => {
     setCurrentNote({
       id: note.id,
@@ -48,6 +51,10 @@ export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
       body: note.body,
       created_at: note.dateFormatted
     })
+  }
+
+  const handleDeleteNote = async (id: string) => {
+    await deleteNote(id)
   }
 
   return (
@@ -73,6 +80,7 @@ export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
             </Link>
             <button
               className={styles.actionDelete}
+              onClick={() => handleDeleteNote(note.id)}
             >
               <AiOutlineDelete size={18} color="#F2668B"/>
             </button>
