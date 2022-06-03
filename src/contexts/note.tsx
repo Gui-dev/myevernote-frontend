@@ -25,7 +25,9 @@ type NoteContextProps = {
   notes: NoteProps[]
   loading: boolean
   loadNotes: () => Promise<void>
+  createNote: (title: string, body: string) => Promise<void>
   findNoteById: (id: string) => Promise<NoteProps | undefined>
+  deleteNote: (id: string) => Promise<void>
 }
 
 type NoteProviderProps = {
@@ -63,6 +65,21 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
     }
   }
 
+  const createNote = async (title: string, body: string) => {
+    try {
+      setLoading(true)
+      await api.post('/notes', {
+        title,
+        body
+      })
+      await loadNotes()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const findNoteById = async (id: string) => {
     try {
       setLoading(true)
@@ -75,12 +92,26 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
     }
   }
 
+  const deleteNote = async (id: string) => {
+    try {
+      setLoading(true)
+      await api.delete(`/notes/${id}`)
+      await loadNotes()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <NoteContext.Provider value={{
       notes,
       loading,
       loadNotes,
-      findNoteById
+      createNote,
+      findNoteById,
+      deleteNote
     }}>
       { children }
     </NoteContext.Provider>
