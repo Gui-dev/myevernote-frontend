@@ -1,6 +1,7 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import ReactModal from 'react-modal'
 
+import { useNote } from './../../hooks/useNote'
 import { RichText } from './../RichText'
 import styles from './style.module.scss'
 
@@ -10,6 +11,7 @@ type FormModalProps = {
 }
 
 export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
+  const { createNote } = useNote()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -17,9 +19,12 @@ export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
     setIsOpenModal(false)
   }
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    console.log(title, body)
+    await createNote(title, body)
+    setTitle('')
+    setBody('')
+    setIsOpenModal(false)
   }
 
   return (
