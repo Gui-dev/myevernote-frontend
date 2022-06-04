@@ -27,6 +27,7 @@ type NoteContextProps = {
   loadNotes: () => Promise<void>
   createNote: (title: string, body: string) => Promise<void>
   findNoteById: (id: string) => Promise<NoteProps | undefined>
+  updateNote: (id: string, title: string, body: string) => Promise<void>
   deleteNote: (id: string) => Promise<void>
 }
 
@@ -92,6 +93,21 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
     }
   }
 
+  const updateNote = async (id: string, title: string, body: string) => {
+    try {
+      setLoading(true)
+      await api.put(`/notes/${id}`, {
+        title,
+        body
+      })
+      await loadNotes()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const deleteNote = async (id: string) => {
     try {
       setLoading(true)
@@ -111,6 +127,7 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
       loadNotes,
       createNote,
       findNoteById,
+      updateNote,
       deleteNote
     }}>
       { children }
