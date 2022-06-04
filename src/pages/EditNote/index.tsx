@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState, FormEvent } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { useNote } from '../../hooks/useNote'
@@ -8,6 +8,7 @@ import { RichText } from '../../components/RichText'
 
 export const EditNote = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const { findNoteById, updateNote } = useNote()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
@@ -33,6 +34,7 @@ export const EditNote = () => {
       await updateNote(id, title, body)
       setTitle('')
       setBody('')
+      navigate('/notes')
     }
   }
 
