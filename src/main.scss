@@ -23,6 +23,26 @@ html, body, #root {
   font-size: 52.6%;
   font-family: 'Poppins', sans-serif;
   background-color: var(--dark100);
+
+    /* width */
+  ::-webkit-scrollbar {
+    width: .5rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--dark80);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--green20);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--green60);
+  }
 }
 
 .ReactModal__Overlay {
