@@ -14,7 +14,9 @@ function App () {
       <BrowserRouter>
         <Header />
         <RoutesNavigation />
-        <ToastContainer />
+        <ToastContainer
+          theme="dark"
+        />
       </BrowserRouter>
     </Contexts>
   )
