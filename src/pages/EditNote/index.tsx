@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useCallback, useState, FormEvent } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
@@ -8,7 +8,7 @@ import { RichText } from '../../components/RichText'
 
 export const EditNote = () => {
   const { id } = useParams()
-  const { findNoteById } = useNote()
+  const { findNoteById, updateNote } = useNote()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -27,7 +27,14 @@ export const EditNote = () => {
     handleFindNoteById()
   }, [handleFindNoteById])
 
-  console.log(body)
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+    if (id) {
+      await updateNote(id, title, body)
+      setTitle('')
+      setBody('')
+    }
+  }
 
   return (
     <section className={styles.container}>
@@ -37,6 +44,7 @@ export const EditNote = () => {
       </Link>
       <form
         className={styles.formUpdate}
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
