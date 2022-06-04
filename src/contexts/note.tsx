@@ -2,6 +2,7 @@ import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 import { api } from '../services/api'
 
@@ -69,11 +70,16 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
   const createNote = async (title: string, body: string) => {
     try {
       setLoading(true)
+      if (title === '' || body === '') {
+        toast.warning('Todos os campos devem ser preenchidos')
+        return
+      }
       await api.post('/notes', {
         title,
         body
       })
       await loadNotes()
+      toast.success('Nota criada com sucesso')
     } catch (error) {
       console.log(error)
     } finally {
@@ -96,11 +102,16 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
   const updateNote = async (id: string, title: string, body: string) => {
     try {
       setLoading(true)
+      if (title === '' || body === '') {
+        toast.warning('Todos os campos devem ser preenchidos')
+        return
+      }
       await api.put(`/notes/${id}`, {
         title,
         body
       })
       await loadNotes()
+      toast.success('Nota atualizada com sucesso')
     } catch (error) {
       console.log(error)
     } finally {
@@ -113,6 +124,7 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
       setLoading(true)
       await api.delete(`/notes/${id}`)
       await loadNotes()
+      toast.success('Nota deletada com sucesso')
     } catch (error) {
       console.log(error)
     } finally {
