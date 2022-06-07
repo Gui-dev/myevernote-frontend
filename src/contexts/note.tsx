@@ -30,6 +30,7 @@ type NoteContextProps = {
   findNoteById: (id: string) => Promise<NoteProps | undefined>
   updateNote: (id: string, title: string, body: string) => Promise<void>
   deleteNote: (id: string) => Promise<void>
+  searchNotes: (word: string) => Promise<void>
 }
 
 type NoteProviderProps = {
@@ -132,6 +133,32 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
     }
   }
 
+  const searchNotes = async (word: string) => {
+    try {
+      const { data } = await api.get(`/notes/search?query=${word}`)
+
+      if (data.length > 0) {
+        const dataFormatted = data.map((note: NoteProps) => {
+          return {
+            ...note,
+            titleFormatted: note.title.substring(0, 15),
+            bodyFormatted: note.body.substring(0, 40),
+            dateFormatted: format(new Date(note.created_at), 'dd/MM/yyyy', { locale: ptBr })
+          }
+        })
+        toast.success(`Foram encontradas ${data.length} nota(s)`)
+        setNotes(dataFormatted.reverse())
+      }
+    } catch (error) {
+      const err = error as AxiosError
+
+      if (err.response?.status === 404) {
+        toast.error('Opssss, Não foi encontrada nenhuma nota')
+        return
+      }
+    }
+  }
+
   return (
     <NoteContext.Provider value={{
       notes,
@@ -140,7 +167,8 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
       createNote,
       findNoteById,
       updateNote,
-      deleteNote
+      deleteNote,
+      searchNotes
     }}>
       { children }
     </NoteContext.Provider>
