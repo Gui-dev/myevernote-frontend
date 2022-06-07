@@ -9,12 +9,16 @@
 .menu {
   position: absolute;
   top: 0;
-  right: 13%;
+  right: 15%;
   margin-top: 1.5rem;
   background-color: transparent;
   border: 0;
   cursor: pointer;
   z-index: 3;
+
+  @media (min-width: 746px) {
+    right: 13%;
+  }
 }
 
 .plus {
@@ -61,4 +65,35 @@
   top: 0;
   left: 30%;
   width: 70%;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0 5%;
+  width: 90%;
+  background-color: var(--dark80);
+  border: 0;
+  border-radius: .5rem;
+
+  input {
+    font-size: 1.6rem;
+    color: var(--light100);
+    padding: 1rem;
+    height: 4rem;
+    width: 80%;
+    background-color: transparent;
+    border: 0;
+  }
+
+  button {
+    font-size: 1.6rem;
+    width: 20%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
 }

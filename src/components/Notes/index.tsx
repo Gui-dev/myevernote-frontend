@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 
-import { AiOutlineMenuFold, AiOutlineMenuUnfold, AiFillPlusCircle } from 'react-icons/ai'
+import {
+  AiOutlineMenuFold,
+  AiOutlineMenuUnfold,
+  AiFillPlusCircle,
+  AiOutlineSearch
+} from 'react-icons/ai'
 
 import styles from './style.module.scss'
 import { ListNotes } from '../ListNotes'
@@ -16,10 +21,11 @@ export type CurrentNoteProps = {
 }
 
 export const NotesComponent = () => {
-  const { notes } = useNote()
+  const { notes, searchNotes } = useNote()
   const [currentNote, setCurrentNote] = useState<CurrentNoteProps | null>(null)
   const [isOpenToogleMenu, setIsOpenToogleMenu] = useState(true)
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [search, setSearch] = useState('')
 
   const handleToggleMenu = () => {
     setIsOpenToogleMenu(prev => !prev)
@@ -27,6 +33,13 @@ export const NotesComponent = () => {
 
   const handleIsOpenModal = () => {
     setIsOpenModal(prev => !prev)
+  }
+
+  const handleSearchNote = () => {
+    if (search.length > 2) {
+      searchNotes(search)
+      setSearch('')
+    }
   }
 
   return (
@@ -55,7 +68,21 @@ export const NotesComponent = () => {
           </button>
         </>
         <aside className={`${styles.listNotes} ${isOpenToogleMenu ? styles.active : ''}`}>
-          <p>Search</p>
+          <div className={styles.search}>
+            <input
+              type="text"
+              title="Busque uma nota por conteúdo"
+              placeholder="Buscar"
+              value={search}
+              onChange={event => setSearch(event.target.value)}
+            />
+            <button
+              onClick={ handleSearchNote }
+            >
+              <AiOutlineSearch size={16} color="#FFF"/>
+            </button>
+          </div>
+
           { notes?.map(note => {
             return (
               <ListNotes
