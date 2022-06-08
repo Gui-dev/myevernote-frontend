@@ -58,35 +58,31 @@ export const ListNotes = ({ note, setCurrentNote }: ListNotesProps) => {
   }
 
   return (
-    <section className={styles.container}>
-      <div className={styles.listItem}>
-        <article
-          className={styles.note}
-          onClick={ () => handleSetCurrentNote(note) }
-        >
-          <h1 className={styles.noteTitle}>{note.titleFormatted}</h1>
-          <div
-            className={styles.noteBody}
-            dangerouslySetInnerHTML={{ __html: note.bodyFormatted }}
-          />
-          <time>{note.dateFormatted}</time>
+    <article
+      className={styles.note}
+      onClick={ () => handleSetCurrentNote(note) }
+    >
+      <h1 className={styles.noteTitle}>{note.titleFormatted}</h1>
+      <div
+        className={styles.noteBody}
+        dangerouslySetInnerHTML={{ __html: note.bodyFormatted }}
+      />
+      <time>{note.dateFormatted}</time>
 
-          <div className={styles.actionButtons}>
-            <Link
-              to={`/notes/edit/${note.id}`}
-              className={styles.actionEdit}
-            >
-              <AiOutlineEdit size={18} color="#008F8C"/>
-            </Link>
-            <button
-              className={styles.actionDelete}
-              onClick={() => handleDeleteNote(note.id)}
-            >
-              <AiOutlineDelete size={18} color="#F2668B"/>
-            </button>
-          </div>
-        </article>
+      <div className={styles.actionButtons}>
+        <Link
+          to={`/notes/edit/${note.id}`}
+          className={styles.actionEdit}
+        >
+          <AiOutlineEdit size={18} color="#008F8C"/>
+        </Link>
+        <button
+          className={styles.actionDelete}
+          onClick={() => handleDeleteNote(note.id)}
+        >
+          <AiOutlineDelete size={18} color="#F2668B"/>
+        </button>
       </div>
-    </section>
+    </article>
   )
 }
