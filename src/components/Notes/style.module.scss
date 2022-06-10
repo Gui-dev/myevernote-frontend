@@ -54,6 +54,32 @@
   width: 30%;
 }
 
+.containerList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 9rem;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: #FFF;
+  text-align: center;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
 .content {
   padding: 0 5%;
   margin-top: 8rem;

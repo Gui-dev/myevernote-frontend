@@ -68,30 +68,38 @@ export const NotesComponent = () => {
           </button>
         </>
         <aside className={`${styles.listNotes} ${isOpenToogleMenu ? styles.active : ''}`}>
-          <div className={styles.search}>
-            <input
-              type="text"
-              title="Busque uma nota por conteúdo"
-              placeholder="Buscar"
-              value={search}
-              onChange={event => setSearch(event.target.value)}
-            />
-            <button
-              onClick={ handleSearchNote }
-            >
-              <AiOutlineSearch size={16} color="#FFF"/>
-            </button>
-          </div>
-
-          { notes?.map(note => {
-            return (
-              <ListNotes
-                key={ String(note.id) }
-                note={ note }
-                setCurrentNote={ setCurrentNote }
+          <>
+            <div className={styles.search}>
+              <input
+                type="text"
+                title="Busque uma nota por conteúdo"
+                placeholder="Buscar"
+                value={search}
+                onChange={event => setSearch(event.target.value)}
               />
-            )
-          }) }
+              <button
+                onClick={ handleSearchNote }
+              >
+                <AiOutlineSearch size={16} color="#FFF"/>
+              </button>
+            </div>
+            <section className={styles.containerList}>
+              <div className={styles.listItem}>
+
+                { notes?.map(note => {
+                  return (
+
+                    <ListNotes
+                      key={ String(note.id) }
+                      note={ note }
+                      setCurrentNote={ setCurrentNote }
+                    />
+
+                  )
+                }) }
+              </div>
+            </section>
+          </>
         </aside>
 
         <div className={`${styles.content} ${isOpenToogleMenu ? styles.active : ''}`}>
