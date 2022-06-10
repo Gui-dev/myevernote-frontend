@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { AiOutlineCaretDown } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
 import logoImg from './../../assets/images/logo-white.png'
@@ -39,19 +40,21 @@ export const Header = () => {
               ? (
                 <>
                   <li>
-                    <Link to="/notes">
-                      Notes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/users/edit">
-                      Profile
-                    </Link>
-                  </li>
-                  <li className={styles.buttonLogout}>
-                    <button onClick={ handleLogout }>
-                      Sair
-                    </button>
+                    <div>
+                      <span>{ user.name }</span>
+                      <AiOutlineCaretDown size={12} color="#FFF"/>
+                    </div>
+                    <div className={styles.userMenu}>
+                      <Link to={`/users/edit/${user.id}`}>
+                        Editar Perfil
+                      </Link>
+                      <button
+                        className={styles.buttonLogout}
+                        onClick={ handleLogout }
+                      >
+                        Sair
+                      </button>
+                    </div>
                   </li>
                 </>
                 )

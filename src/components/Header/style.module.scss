@@ -50,14 +50,36 @@
     z-index: 4;
 
     li {
-      margin-top: 1.5rem;
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-      padding: 1rem;
+      margin: 1rem auto;
       height: 4rem;
-      width: 25rem;
+      width: 95%;
       background-color: var(--green80);
       border-radius: 5px;
+
+      @media (min-width: 746px) {
+        width: 20rem;
+      }
+
+      > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+
+
+        @media (min-width: 746px) {
+          margin-bottom: .2rem;
+        }
+
+        span {
+          font-size: 1.8rem;
+          color: var(--light100);
+          margin-right: 1rem;
+        }
+
+
+      }
 
       a {
         display: block;
@@ -65,30 +87,41 @@
         font-weight: bold;
         color: var(--light100);
         text-decoration: none;
-        width: 25rem;
+      }
+
+      .userMenu {
+        display: none;
+      }
+
+      &:hover .userMenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: .5rem;
+        padding: 1rem;
+        width: 100%;
+        background-color: var(--green80);
+        border-radius: .5rem;
       }
     }
 
     .buttonLogout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: left;
+      color: var(--light100);
+      margin-top: 2rem;
+      padding: 1rem;
+      height: 4rem;
+      width: 100%;
       background-color: var(--pink100);
-      padding: 0;
-
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        font-weight: bold;
-        text-align: left;
-        color: var(--light100);
-        padding: 1rem;
-        height: 4rem;
-        width: 100%;
-        background-color: transparent;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
     }
   }
 
