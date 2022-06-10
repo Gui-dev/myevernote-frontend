@@ -38,7 +38,7 @@ export const RoutesNavigation = () => {
           element={<EditNote />}
         />
         <Route
-          path="/users/edit"
+          path="/users/edit/:id"
           element={<User />}
         />
       </Route>
