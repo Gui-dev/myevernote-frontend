@@ -21,6 +21,8 @@ export const User = () => {
   const handleUpdatePassword = async (event: FormEvent) => {
     event.preventDefault()
     await updatePassword(password, confirmPassword)
+    setPassword('')
+    setConfirmPassword('')
   }
 
   return (
