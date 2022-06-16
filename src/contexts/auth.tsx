@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios'
 import React, { createContext, ReactNode, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { api } from '../services/api'
 
@@ -16,6 +17,8 @@ type AuthContextProps = {
   error: string
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => void
+  updatePersonalInformation: (name: string, email: string) => Promise<void>
+  updatePassword: (password: string, confirmPassword: string) => Promise<void>
 }
 
 type AuthProviderProps = {
@@ -30,17 +33,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const loadUser = () => {
-      const user = localStorage.getItem('myevernote:user')
-      const token = localStorage.getItem('myevernote:token')
-
-      if (user && token) {
-        api.defaults.headers.common.Authorization = `Bearer ${token}`
-        setUser(JSON.parse(user))
-      }
-    }
     loadUser()
   }, [])
+
+  const loadUser = async () => {
+    const user = localStorage.getItem('myevernote:user')
+    const token = localStorage.getItem('myevernote:token')
+
+    if (user && token) {
+      api.defaults.headers.common.Authorization = `Bearer ${token}`
+      setUser(JSON.parse(user))
+    }
+  }
 
   const signIn = async (email: string, password: string) => {
     try {
@@ -79,13 +83,65 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null)
   }
 
+  const updatePersonalInformation = async (name: string, email: string) => {
+    try {
+      setLoading(true)
+      if (name === '' || email === '') {
+        toast.error('Nome e E-mail devem ser preechindos')
+        return
+      }
+
+      const { data } = await api.put('/users/edit', {
+        name,
+        email
+      })
+
+      localStorage.removeItem('myevernote:user')
+      localStorage.setItem('myevernote:user', JSON.stringify(data))
+      setUser(data.user)
+      toast.success('Informações atualizadas com sucesso')
+      await loadUser()
+    } catch (error) {
+      console.log(error)
+      toast.error('Erro ao atualizar informações')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const updatePassword = async (password: string, confirmPassword: string) => {
+    try {
+      setLoading(true)
+      if (password === '' || confirmPassword === '') {
+        toast.warning('Campo senha e confirmar senha devem ser preenchidos')
+        return
+      }
+      if (password !== confirmPassword) {
+        toast.error('As senhas não combinam')
+        return
+      }
+      if (password.length < 6) {
+        toast.error('A senha deve ter no minimo 6 caracteres')
+        return
+      }
+
+      toast.success('A senha foi atualizada com sucesso')
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <AuthContext.Provider value={{
       user,
       loading,
       error,
       signIn,
-      signOut
+      signOut,
+      updatePersonalInformation,
+      updatePassword
     }}>
       { children }
     </AuthContext.Provider>
