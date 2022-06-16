@@ -125,6 +125,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         return
       }
 
+      await api.put('/users/reset_password', {
+        password
+      })
+
       toast.success('A senha foi atualizada com sucesso')
     } catch (error) {
       console.log(error)
