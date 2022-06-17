@@ -37,12 +37,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [])
 
   const loadUser = async () => {
-    const user = localStorage.getItem('myevernote:user')
-    const token = localStorage.getItem('myevernote:token')
+    try {
+      setLoading(true)
+      const user = localStorage.getItem('myevernote:user')
+      const token = localStorage.getItem('myevernote:token')
 
-    if (user && token) {
-      api.defaults.headers.common.Authorization = `Bearer ${token}`
-      setUser(JSON.parse(user))
+      if (user && token) {
+        api.defaults.headers.common.Authorization = `Bearer ${token}`
+        setUser(JSON.parse(user))
+      }
+    } catch {
+      toast.error('Erro ao carregar dados do usuário')
+    } finally {
+      setLoading(false)
     }
   }
 

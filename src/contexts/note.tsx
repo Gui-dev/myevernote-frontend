@@ -59,10 +59,10 @@ export const NoteProvider = ({ children }: NoteProviderProps) => {
           dateFormatted: format(new Date(note.created_at), 'dd/MM/yyyy', { locale: ptBr })
         }
       })
-
+      console.log(dataFormatted)
       setNotes(dataFormatted.reverse())
     } catch (error) {
-      console.log(error)
+      toast.error('Erro interno')
     } finally {
       setLoading(false)
     }
