@@ -3,6 +3,7 @@
 </h1>
 
 # MyEvernote
+MyEvernote is an app to write down your ideas anytime
 
 # Screens
 
@@ -12,9 +13,10 @@
 ![Note](./.screens/note_content.png)
 
 ## Technologies used
-  - [ReactJS](https://pt-br.reactjs.org)
+  - [ViteJS](https://vitejs.dev)
   - [Typescript](https://www.typescriptlang.org)
-  - [Sass](https://www.styled-components.com)
+  - [Sass](https://sass-lang.com)
+  - [React Toastify](https://npm.io/package/react-toastify)
 
 ## Requirements
 
