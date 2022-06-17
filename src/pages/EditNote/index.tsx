@@ -3,13 +3,15 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { useNote } from '../../hooks/useNote'
-import styles from './style.module.scss'
 import { RichText } from '../../components/RichText'
+import { Load } from '../../components/Load'
+
+import styles from './style.module.scss'
 
 export const EditNote = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { findNoteById, updateNote } = useNote()
+  const { findNoteById, loading, updateNote } = useNote()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -62,7 +64,9 @@ export const EditNote = () => {
         />
 
         <div className={styles.groupButtons}>
-          <button className={styles.buttonConfirm}>Atualizar Post</button>
+          <button className={styles.buttonConfirm}>
+            {loading ? <Load height={32} width={32}/> : 'Atualizar Post'}
+          </button>
         </div>
       </form>
     </section>

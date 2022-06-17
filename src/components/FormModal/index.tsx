@@ -3,6 +3,8 @@ import ReactModal from 'react-modal'
 
 import { useNote } from './../../hooks/useNote'
 import { RichText } from './../RichText'
+import { Load } from '../Load'
+
 import styles from './style.module.scss'
 
 type FormModalProps = {
@@ -11,7 +13,7 @@ type FormModalProps = {
 }
 
 export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
-  const { createNote } = useNote()
+  const { createNote, loading } = useNote()
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
@@ -57,7 +59,9 @@ export const FormModal = ({ isOpenModal, setIsOpenModal }: FormModalProps) => {
           >
               Cancelar
           </button>
-          <button className={styles.buttonConfirm}>Postar</button>
+          <button className={styles.buttonConfirm}>
+            {loading ? <Load height={32} width={32}/> : 'Postar'}
+          </button>
         </div>
       </form>
     </ReactModal>

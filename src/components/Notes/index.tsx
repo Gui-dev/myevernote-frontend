@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import noteImg from './../../assets/images/note_login.png'
+
 import {
   AiOutlineMenuFold,
   AiOutlineMenuUnfold,
@@ -12,6 +14,7 @@ import { ListNotes } from '../ListNotes'
 import { ContentNote } from '../ContentNote'
 import { FormModal } from '../FormModal'
 import { useNote } from '../../hooks/useNote'
+import { Load } from '../Load'
 
 export type CurrentNoteProps = {
   id: string
@@ -21,7 +24,7 @@ export type CurrentNoteProps = {
 }
 
 export const NotesComponent = () => {
-  const { notes, searchNotes } = useNote()
+  const { loading, notes, searchNotes } = useNote()
   const [currentNote, setCurrentNote] = useState<CurrentNoteProps | null>(null)
   const [isOpenToogleMenu, setIsOpenToogleMenu] = useState(true)
   const [isOpenModal, setIsOpenModal] = useState(false)
@@ -40,6 +43,14 @@ export const NotesComponent = () => {
       searchNotes(search)
       setSearch('')
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="loadingContainer">
+        <Load height={60} width={60}/>
+      </div>
+    )
   }
 
   return (
@@ -106,7 +117,12 @@ export const NotesComponent = () => {
           {
             currentNote
               ? <ContentNote currentNote={currentNote}/>
-              : <h1>HERE</h1>
+              : <div className={styles.containerContent}>
+                  <h1 className={styles.titleContent}>
+                    Selecione uma nota ao lado
+                  </h1>
+                  <img src={noteImg} alt="Bloco de notas" />
+                </div>
           }
         </div>
       </section>

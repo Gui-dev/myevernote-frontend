@@ -2,12 +2,14 @@ import React, { FormEvent, useState } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { FaLock, FaMailBulk, FaUserAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+
+import { Load } from '../../components/Load'
 import { useAuth } from '../../hooks/useAuth'
 
 import styles from './style.module.scss'
 
 export const User = () => {
-  const { user, updatePersonalInformation, updatePassword } = useAuth()
+  const { loading, user, updatePersonalInformation, updatePassword } = useAuth()
   const [name, setName] = useState(user?.name || '')
   const [email, setEmail] = useState(user?.email || '')
   const [password, setPassword] = useState('')
@@ -58,7 +60,7 @@ export const User = () => {
             type="submit"
             className={styles.buttonSubmit}
           >
-            Atualizar Perfil
+            {loading ? <Load height={32} width={32}/> : 'Atualizar Perfil'}
           </button>
         </form>
       </div>
@@ -91,7 +93,7 @@ export const User = () => {
             type="submit"
             className={styles.buttonSubmit}
           >
-            Atualizar Senha
+            {loading ? <Load height={32} width={32}/> : 'Atualizar Senha'}
           </button>
         </form>
       </div>

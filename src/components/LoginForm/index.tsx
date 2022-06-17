@@ -3,6 +3,7 @@ import { FaLock, FaMailBulk } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
+import { Load } from '../Load'
 import styles from './style.module.scss'
 
 export const LoginForm = () => {
@@ -48,7 +49,9 @@ export const LoginForm = () => {
       <div className={styles.buttonGroup}>
         <button>
           {
-            loading ? 'Carregando...' : 'Login'
+            loading
+              ? <Load height={32} width={32}/>
+              : 'Login'
           }
         </button>
         <Link to="/register">

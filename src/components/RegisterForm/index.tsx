@@ -5,6 +5,7 @@ import { AxiosError } from 'axios'
 
 import styles from './style.module.scss'
 import { api } from '../../services/api'
+import { Load } from '../Load'
 
 export const RegisterForm = () => {
   const navigate = useNavigate()
@@ -86,7 +87,7 @@ export const RegisterForm = () => {
       <div className={styles.buttonGroup}>
         <button>
           {
-            loading ? 'Carregando...' : 'Cadastrar'
+            loading ? <Load height={32} width={32}/> : 'Cadastrar'
           }
         </button>
         <Link to="/login">

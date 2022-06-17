@@ -84,6 +84,36 @@
   padding: 0 5%;
   margin-top: 8rem;
   width: 100%;
+
+  @media (min-width: 1024px) {
+    padding: 0 5%;
+    margin: 8rem auto 0 auto;
+    width: 80%;
+  }
+
+  .containerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+
+    .titleContent {
+      font-size: 2.5rem;
+      text-align: center;
+      color: var(--light100);
+    }
+
+    img {
+      height: 30rem;
+    }
+
+    @media (min-width: 746px) {
+      img {
+        height: 45rem;
+      }
+    }
+  }
 }
 
 .content.active {
