@@ -9,7 +9,7 @@
 ![Home](./.screens/home.png)
 ![Register](./.screens/register.png)
 ![Login](./.screens/login.png)
-![Note](./.screens/notes_content.png)
+![Note](./.screens/note_content.png)
 
 ## Technologies used
   - [ReactJS](https://pt-br.reactjs.org)
