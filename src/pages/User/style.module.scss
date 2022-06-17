@@ -4,14 +4,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 5%;
+  padding: 0 5%;
   height: calc(100vh - 7rem);
-  max-width: 102rem;
+  width: 100%;
 
   > a {
     position: absolute;
     top: 2rem;
-    left: 0;
+    left: 5%;
   }
 
   h1 {
@@ -85,6 +85,10 @@
   justify-content: center;
   margin-bottom: 2rem;
   width: 100%;
+
+  @media (min-width: 746px) {
+    width: 60%;
+  }
 }
 
 .fieldPassword {
@@ -93,4 +97,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+
+  @media (min-width: 746px) {
+    width: 60%;
+  }
 }
